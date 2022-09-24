@@ -18,9 +18,10 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
+
   public registerNow() {
-    let response = this.service.doRegistration(this.user);
-    response.subscribe((data) => this.message = data);
+    let resp = this.service.doRegistration(this.user);
+    resp.subscribe((data) => this.message = data);
   }
 
 }
