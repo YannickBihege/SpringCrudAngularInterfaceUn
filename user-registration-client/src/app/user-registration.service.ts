@@ -22,6 +22,6 @@ export class UserRegistrationService {
   }
 
   public deleteUser(id: string | number) {
-    return this.http.delete("http://localhost:808/cancel/" + id);
+    return this.http.delete("http://localhost:8080/cancel/" + id);
   }
 }
