@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!--
+
+  -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
@@ -28,6 +34,40 @@
   <div class="container">
     <h3>Create Read Update Delete Application</h3>
     <p>The backend is written in Spring.</p>
+  </div>
+
+
+
+  <!------List users ---------->
+
+  <button class="text-center" type="button" class="btn" (click)="getUsers()">Get all registered users</button>
+
+  <div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Experience</th>
+            <th>Domain</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.experience}}</td>
+            <td>{{user.domain}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </body>

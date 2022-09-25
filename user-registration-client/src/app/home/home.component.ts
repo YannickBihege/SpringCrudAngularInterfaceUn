@@ -1,4 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserRegistrationService } from '../user-registration.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  users: any;
+
+  constructor(private service: UserRegistrationService) { }
+
+  ngOnInit() {
+
+  }
+
+  getUsers() {
+    let resp = this.service.getUsers();
+    resp.subscribe((data) => this.users = data);
   }
 
 }

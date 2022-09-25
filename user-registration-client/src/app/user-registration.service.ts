@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -15,7 +15,11 @@ export class UserRegistrationService {
   // update
 
   public getUsers() {
-    return this.http.get("http://localhost:8080/getAllUsers")
+    let username = 'user';
+    let password = 'password';
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return this.http.get("http://localhost:8080/getAllUsers", { headers });
+    //return this.http.get("http://localhost:8080/getAllUsers")
   }
   public getUserByEmail(email: string) {
     return this.http.get("http://localhost:8080//findUser/" + email);
@@ -24,4 +28,6 @@ export class UserRegistrationService {
   public deleteUser(id: string | number) {
     return this.http.delete("http://localhost:8080/cancel/" + id);
   }
+
+
 }
