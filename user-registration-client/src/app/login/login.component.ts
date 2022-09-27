@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     resp.subscribe(data => {
       this.message = data;
       this.router.navigate(["/home"]);
-      // console.log(data);
+      console.log(data);
     });
   }
 }

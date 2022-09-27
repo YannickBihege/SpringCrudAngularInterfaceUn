@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,30 @@ export class UserRegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  public doRegistration(user: any) {
+  //url!: string;
+
+  //url = "localhost";
+  private url!: string;
+
+  public doRegistration_old(user: any) {
     return this.http.post("http://localhost:8080/register", user, { responseType: 'text' as 'json' });
+  }
+
+
+  public save(user: User) {
+    return this.http.post<User>(this.url, user);
+  }
+
+  public doRegistration(user: User) {
+    return this.http.post<User>("http://localhost:8080/register", user);
+  }
+
+  public getUserByEmail(email: string) {
+    return this.http.get("http://localhost:8080//findUser/" + email);
+  }
+
+  public deleteUser(id: string | number) {
+    return this.http.delete("http://localhost:8080/cancel/" + id);
   }
 
   // update
@@ -21,13 +44,7 @@ export class UserRegistrationService {
     return this.http.get("http://localhost:8080/getAllUsers", { headers });
     //return this.http.get("http://localhost:8080/getAllUsers")
   }
-  public getUserByEmail(email: string) {
-    return this.http.get("http://localhost:8080//findUser/" + email);
-  }
 
-  public deleteUser(id: string | number) {
-    return this.http.delete("http://localhost:8080/cancel/" + id);
-  }
 
 
 }
