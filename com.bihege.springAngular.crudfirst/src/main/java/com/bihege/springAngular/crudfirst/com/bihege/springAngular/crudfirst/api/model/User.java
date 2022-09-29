@@ -6,10 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,11 +16,17 @@ import javax.persistence.Table;
 @ToString
 @Table(name="USER_REGISTRATION_TABLE")
 public class User {
+
+    // @GeneratedValue
     @Id
-    @GeneratedValue
-    private int id;
+    private int user_id;
+    private String password;
     private String name;
     private String email;
     private int experience;
     private String domain;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }
