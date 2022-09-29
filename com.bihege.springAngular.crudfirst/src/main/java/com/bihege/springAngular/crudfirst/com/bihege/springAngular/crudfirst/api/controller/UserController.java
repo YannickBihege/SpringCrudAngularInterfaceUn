@@ -3,6 +3,7 @@ package com.bihege.springAngular.crudfirst.com.bihege.springAngular.crudfirst.ap
 
 import com.bihege.springAngular.crudfirst.com.bihege.springAngular.crudfirst.api.dao.UserRepository;
 import com.bihege.springAngular.crudfirst.com.bihege.springAngular.crudfirst.api.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +18,11 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    /*
-    @PostMapping("/register")
-    public String registerOld(@RequestBody User user){
-        repository.save(user);
-        return "Hello "+ user.getName() + "Your registration process successfully completed";
-    }
-    */
-
     @PostMapping("/register")
     public User register(@RequestBody User user){
+
+        System.out.print("Registration attempted");
         return repository.save(user);
-       // console.log ("Hello "+ user.getName() + "Your registration process successfully completed");
     }
 
 
@@ -64,14 +58,4 @@ public class UserController {
     }
 
 
-	/*
-	// Overtaken Spring Security
-	@GetMapping("/getUsers")
-	public List<User> getUsers(){
-		return Stream.of(new User(11,"Guy","specialguy@gmail.com",4,"Engineer Hardware"),
-				new User(12,"Santosh","santosh@gmail.com",8, "ProjectManager"),
-						new User(13,"Basant","basant@gmail.com",12,"Engineer Electronics")).
-				collect(Collectors.toList());
-	}
-	*/
 }

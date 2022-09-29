@@ -17,16 +17,6 @@ import java.util.stream.Stream;
 @SpringBootApplication
 public class Application {
 
-	@Bean
-	public WebMvcConfigurer configure() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/*").allowedOrigins("http://localhost:4300");
-			}
-
-		};
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

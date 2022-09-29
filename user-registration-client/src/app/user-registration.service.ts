@@ -9,30 +9,49 @@ export class UserRegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  //url!: string;
 
-  //url = "localhost";
+  public injectHeaders() {
+    let username = 'user';
+    let password = 'password';
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return headers;
+  }
+
+
   private url!: string;
 
   public doRegistration_old(user: any) {
     return this.http.post("http://localhost:8080/register", user, { responseType: 'text' as 'json' });
   }
 
+  /*
 
   public save(user: User) {
     return this.http.post<User>(this.url, user);
   }
+  */
 
   public doRegistration(user: User) {
-    return this.http.post<User>("http://localhost:8080/register", user);
+    let username = 'user';
+    let password = 'password';
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), responseType: 'text' as 'json' });
+    return this.http.post<User>("http://localhost:8080/register", user, { headers });
+
+    // return this.http.post<User>("http://localhost:8080/register", user, { responseType: 'text' as 'json' });
   }
 
   public getUserByEmail(email: string) {
-    return this.http.get("http://localhost:8080//findUser/" + email);
+    let username = 'user';
+    let password = 'password';
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return this.http.get("http://localhost:8080//findUser/" + email, { headers });
   }
 
   public deleteUser(id: string | number) {
-    return this.http.delete("http://localhost:8080/cancel/" + id);
+    let username = 'user';
+    let password = 'password';
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return this.http.delete("http://localhost:8080/cancel/" + id, { headers });
   }
 
   // update
@@ -42,7 +61,6 @@ export class UserRegistrationService {
     let password = 'password';
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     return this.http.get("http://localhost:8080/getAllUsers", { headers });
-    //return this.http.get("http://localhost:8080/getAllUsers")
   }
 
 
